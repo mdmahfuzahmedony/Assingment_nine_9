@@ -19,13 +19,13 @@ const AllToy = () => {
     <div className="text-center px-4 ">
 
 
-                          {/* ---------- Heading ---------- */}
+
       <h1 className="text-[40px] font-bold text-white mt-10">Our All Toys</h1>
       <p className="text-[18px] font-light text-gray-400 mt-2">
         Explore all the Toy
       </p>
 
-                            {/* ---------- Search Bar & Count ---------- */}
+
       <div className="flex flex-col md:flex-row justify-between  items-center gap-4 mt-8 max-w-[1300px] mx-auto">
         <p className="text-white font-medium">
           <span className="text-white">({toyP.length})</span> Toy Found
@@ -36,9 +36,6 @@ const AllToy = () => {
             type="search"
             placeholder="Search App..."
 
-            // value={searchTerm}
-            // onChange={(e) => setSearchTerm(e.target.value)}
-            
             className="w-full text-white py-2 pl-10 pr-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
           />
           <svg
@@ -60,7 +57,7 @@ const AllToy = () => {
         </div>
       </div>
 
-      {/* ---------- Apps Grid / Not Found ---------- */}
+
       <div className="mt-10 ">
         <AllToys key={toyP.toyId} toy={toyP}></AllToys>
       </div>

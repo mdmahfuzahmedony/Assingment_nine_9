@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔹 Register user with displayName & photoURL
+
   const createUser = (email, password, displayName, photoURL) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password)
@@ -33,13 +33,13 @@ const AuthProvider = ({ children }) => {
       .finally(() => setLoading(false));
   };
 
-  // 🔹 Login with email & password
+
   const signInUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // 🔹 Google Sign-In
+
   const googleProvider = new GoogleAuthProvider();
   const signInWithGoogle = () => {
     setLoading(true);
@@ -48,19 +48,19 @@ const AuthProvider = ({ children }) => {
     );
   };
 
-  // 🔹 Logout
+
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
 
-  // 🔹 Forget Password
+
   const resetPassword = (email) => {
     setLoading(true);
     return sendPasswordResetEmail(auth, email).finally(() => setLoading(false));
   };
 
-  // 🔹 Update user profile (name & photo)
+
   const updateUserProfile = (name, photoURL) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
@@ -68,7 +68,7 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  // 🔹 User state observer
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -77,7 +77,7 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // 🔹 All auth info
+
   const authInfo = {
     user,
     loading,
@@ -86,7 +86,7 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     resetPassword,
     logOut,
-    updateUserProfile, // ✅ added for profile editing
+    updateUserProfile, 
   };
 
   return (

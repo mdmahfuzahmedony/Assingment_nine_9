@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <div className="max-w-[1400px] mx-auto mt-4">
       <div className="navbar bg-base-100 shadow-sm">
-        {/* Left Side */}
+
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -66,9 +66,9 @@ const Header = () => {
           </NavLink>
         </div>
 
-        {/* Right Side */}
+
         <div className="navbar-end gap-3">
-          {/* Desktop menu */}
+
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
               <li>

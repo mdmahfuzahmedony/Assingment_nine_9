@@ -42,7 +42,7 @@ const Home = () => {
             {toyP.map((toy) => (
               <SwiperSlide key={toy.toyId}>
                 <div className="flex flex-col md:flex-row items-center justify-between bg-white rounded-xl shadow-lg p-4 md:p-6 lg:p-8">
-                  {/* Left Content */}
+     
                   <div className="w-full md:w-1/2 text-center md:text-left">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-800">
                       {toy.toyName}
@@ -61,7 +61,7 @@ const Home = () => {
                     </NavLink>
                   </div>
 
-                  {/* Right Image */}
+   
                   <div className="w-full md:w-1/2 flex justify-center mt-6 md:mt-0">
                     <img
                       src={toy.pictureURL}
@@ -80,7 +80,7 @@ const Home = () => {
         )}
       </div>
 
-      {/* Category Section */}
+
       <div className="my-10 bg-gray-300 p-5 rounded-2xl shadow-md">
         <h1 className="text-black font-black text-2xl sm:text-3xl mb-5 px-3">
           Top by Category
@@ -88,7 +88,7 @@ const Home = () => {
         <Catagory />
       </div>
 
-      {/* Product Section */}
+ 
       <div className="mt-10">
         <p className="text-2xl sm:text-3xl font-bold mb-5">Most Top Product</p>
         <HomeProduct />
@@ -102,7 +102,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Subscribe Section */}
+
       <section className="relative bg-gradient-to-r from-pink-50 to-blue-50 py-16 md:py-24 rounded-2xl overflow-hidden my-20 mx-auto max-w-7xl">
         <div className="absolute -bottom-10 -left-10 w-32 h-32 sm:w-40 sm:h-40 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
         <div className="absolute -top-10 -right-10 w-32 h-32 sm:w-40 sm:h-40 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
