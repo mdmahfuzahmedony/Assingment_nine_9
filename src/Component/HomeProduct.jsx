@@ -1,7 +1,15 @@
+// import useToyproduct from "../Hook/useToyProduct";
+import { useEffect } from "react";
 import useToyproduct from "../Hook/useToyProduct";
 import SingleToy from "./SingleToy";
 
 const HomeProduct = () => {
+
+
+    useEffect(() => {
+        document.title = "HomeProduct | ToyStore";
+      }, []);
+
  const {toyP ,error , loading} = useToyproduct()
   const treandingToy = toyP.slice(0, 8);
   console.log(loading);

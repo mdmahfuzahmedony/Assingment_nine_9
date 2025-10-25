@@ -1,8 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink } from "react-router";
 import { AuthContext } from "../AuthContext/AuthContext";
 
-const Navbar = () => {
+const Header = () => {
+  useEffect(() => {
+    document.title = "Header | ToyStore";
+  }, []);
+
   const { user, logOut } = useContext(AuthContext);
 
   const handleLogOut = () => {
@@ -70,6 +74,10 @@ const Navbar = () => {
               <li>
                 <NavLink to="/home">Home</NavLink>
               </li>
+              <li>
+                <NavLink to="/alltoy">alltoy</NavLink>
+              </li>
+
               {user && (
                 <li>
                   <NavLink to="/myprofile">My Profile</NavLink>
@@ -88,7 +96,6 @@ const Navbar = () => {
             </ul>
           </div>
 
-        
           {user ? (
             <>
               {user.photoURL ? (
@@ -125,4 +132,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;

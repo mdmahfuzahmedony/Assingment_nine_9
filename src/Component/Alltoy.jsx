@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../Component/Custom.css";
 import AllToys from "./AllToys";
 import useToyproduct from "../Hook/useToyProduct";
 
 const AllToy = () => {
+  useEffect(() => {
+    document.title = "AllToys | ToyStore";
+  }, []);
+
   const { toyP, loading } = useToyproduct();
   if (loading) {
     return (
@@ -13,13 +17,15 @@ const AllToy = () => {
 
   return (
     <div className="text-center px-4 ">
-      {/* ---------- Heading ---------- */}
+
+
+                          {/* ---------- Heading ---------- */}
       <h1 className="text-[40px] font-bold text-white mt-10">Our All Toys</h1>
       <p className="text-[18px] font-light text-gray-400 mt-2">
-        Explore all the Toy 
+        Explore all the Toy
       </p>
 
-      {/* ---------- Search Bar & Count ---------- */}
+                            {/* ---------- Search Bar & Count ---------- */}
       <div className="flex flex-col md:flex-row justify-between  items-center gap-4 mt-8 max-w-[1300px] mx-auto">
         <p className="text-white font-medium">
           <span className="text-white">({toyP.length})</span> Toy Found
@@ -29,8 +35,10 @@ const AllToy = () => {
           <input
             type="search"
             placeholder="Search App..."
+
             // value={searchTerm}
             // onChange={(e) => setSearchTerm(e.target.value)}
+            
             className="w-full text-white py-2 pl-10 pr-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
           />
           <svg

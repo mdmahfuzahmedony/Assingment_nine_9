@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔹 Register with displayName & photoURL
+  // 🔹 Register user with displayName & photoURL
   const createUser = (email, password, displayName, photoURL) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password)
@@ -28,15 +28,24 @@ const AuthProvider = ({ children }) => {
         return updateProfile(result.user, {
           displayName,
           photoURL,
-        }).then(() => result); // updated user return
+        }).then(() => result);
       })
       .finally(() => setLoading(false));
   };
 
-  // 🔹 Login with email/password
+  // 🔹 Login with email & password
   const signInUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  // 🔹 Google Sign-In
+  const googleProvider = new GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider).finally(() =>
+      setLoading(false)
+    );
   };
 
   // 🔹 Logout
@@ -45,19 +54,18 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  // 🔹 Google Sign-In
-  const googleProvider = new GoogleAuthProvider();
-  const signInWithGoogle = () => {
-    setLoading(true);
-    return signInWithPopup(auth, googleProvider)
-      .finally(() => setLoading(false));
-  };
-
   // 🔹 Forget Password
   const resetPassword = (email) => {
     setLoading(true);
-    return sendPasswordResetEmail(auth, email)
-      .finally(() => setLoading(false));
+    return sendPasswordResetEmail(auth, email).finally(() => setLoading(false));
+  };
+
+  // 🔹 Update user profile (name & photo)
+  const updateUserProfile = (name, photoURL) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photoURL,
+    });
   };
 
   // 🔹 User state observer
@@ -69,20 +77,20 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  // 🔹 All auth info
   const authInfo = {
     user,
     loading,
     createUser,
     signInUser,
     signInWithGoogle,
-    resetPassword, // add forget password function
+    resetPassword,
     logOut,
+    updateUserProfile, // ✅ added for profile editing
   };
 
   return (
-    <AuthContext.Provider value={authInfo}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 

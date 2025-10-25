@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../Component/Custom.css";
 import { NavLink } from "react-router";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
 import { SiAmericanexpress, SiApplepay, SiGooglepay, SiMastercard, SiPaypal, SiVisa } from "react-icons/si";
 
 const Footer = () => {
+
+   useEffect(() => {
+       document.title = "Footer | ToyStore";
+     }, []);
   return <div className=" bg-gray-800 ">
 
  <footer className="bg-gray-300 pt-16 pb-8 border-t border-gray-200">

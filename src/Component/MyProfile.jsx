@@ -1,37 +1,61 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../AuthContext/AuthContext";
 
 const MyProfile = () => {
-  const { user } = useContext(AuthContext);
+  const { user, updateUserProfile } = useContext(AuthContext);
+  const [name, setName] = useState(user?.displayName || "");
+  const [photo, setPhoto] = useState(user?.photoURL || "");
 
-  if (!user) {
-    return <p>Please login to view your profile.</p>;
-  }
+  useEffect(() => {
+          document.title = "MyProfile | ToyStore";
+        }, []);
+  
+
+  const handleUpdate = (e) => {
+
+    
+    e.preventDefault();
+    updateUserProfile(name, photo)
+      .then(() => alert("Profile updated successfully!"))
+      .catch((error) => console.error(error));
+  };
 
   return (
-    <div className="max-w-[1400px] flex justify-center items-center mt-40  mx-auto p-4">
-      <div className="flex flex-col justify-center items-center border  rounded-[30px] py-30 px-20">
-        <h1 className="text-3xl text-center font-bold mb-4">My Profile</h1>
-        <div className="flex items-center gap-4">
-          {user.photoURL ? (
-            <img
-              src={user.photoURL}
-              alt="User"
-              className="w-20 h-20 rounded-full border-2 border-blue-500"
-            />
-          ) : (
-            <div className="w-20 h-20 rounded-full bg-blue-500 flex items-center justify-center text-white text-2xl font-bold">
-              {user.displayName ? user.displayName[0].toUpperCase() : "U"}
-            </div>
-          )}
-          <div>
-            <p className="text-xl font-semibold">
-              {user.displayName || "User"}
-            </p>
-            <p className="text-gray-300 mt-2">{user.email}</p>
-          </div>
-        </div>
+    <div className="flex flex-col items-center mt-10 ">
+
+      <div className="border py-20 px-20 rounded-[40px] items-center">
+<img
+        src={user?.photoURL || "https://i.ibb.co/2d3K3Qv/default.png"}
+        alt="Profile"
+        className="w-32 h-32 rounded-full border-4 border-blue-400 mb-4"
+      />
+      <h2 className="text-2xl font-bold">{user?.displayName}</h2>
+      <p className="text-gray-500">{user?.email}</p>
+
+      <form onSubmit={handleUpdate} className="mt-6 flex flex-col gap-3">
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Update name"
+          className="border px-3 py-2 rounded"
+        />
+        <input
+          type="text"
+          value={photo}
+          onChange={(e) => setPhoto(e.target.value)}
+          placeholder="Update photo URL"
+          className="border px-3 py-2 rounded"
+        />
+        <button
+          type="submit"
+          className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+        >
+          Save Changes
+        </button>
+      </form>
       </div>
+      
     </div>
   );
 };
